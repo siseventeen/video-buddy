@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { extractVideoId, fetchTranscript } from "@/lib/youtube";
-import { generateMindmap } from "@/lib/claude";
+import { generateMindmap } from "@/lib/ai";
 import type { ProcessVideoResponse } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate mindmap via Claude
+    // Generate mindmap via AI (Claude or Gemini, based on which key is set)
     const mindmap = await generateMindmap(transcript);
 
     const response: ProcessVideoResponse = {
